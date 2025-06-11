@@ -1,0 +1,31 @@
+<div
+  class="h-12 flex items-center z-30 justify-between px-5 overflow-auto custom-scrollbar bg-slate-100"
+>
+  @for (step of steps; track $index) {
+  <button
+    (click)="visitStep(step.key)"
+    [disabled]="!isVisited(step.key)"
+    class="{{
+      currentStep() === step.key ? 'text-indigo-500' : 'text-slate-800'
+    }} cursor-pointer flex mr-2 lg:mr-0 items-center lg:px-2 disabled:pointer-events-none disabled:text-slate-400 w-min h-full font-semibold text-base"
+  >
+    <span
+      class="size-9 lg:size-7 rounded shrink-0 text-sm {{
+        currentStep() === step.key
+          ? 'bg-indigo-100'
+          : isVisited(step.key)
+          ? 'bg-slate-200'
+          : 'bg-slate-200'
+      }} flex items-center justify-center lg:hidden"
+      >{{ $index + 1 }}</span
+    >
+    <span class="hidden lg:block whitespace-nowrap">{{ step.title }}</span>
+  </button>
+  @if (!$last) {
+  <lucide-angular
+    [img]="getIcon('ChevronRightIcon')"
+    size="18"
+    class="text-slate-400 hidden lg:block"
+  ></lucide-angular>
+  } }
+</div>

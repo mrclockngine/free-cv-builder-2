@@ -1,0 +1,25 @@
+<div [class]="wrapperClassName">
+  <label class="font-medium text-slate-600 shrink-0">{{ label() }}</label>
+  <div [className]="className">
+    <input
+      type="text"
+      class="placeholder-slate-500 text-base bg-transparent flex-1"
+      [placeholder]="placeholder()"
+      (focus)="focused.set(true)"
+      (blur)="focused.set(false)"
+      [formControl]="control()"
+    />
+    @if (isOkay!==undefined) {
+    <lucide-angular
+      [img]="getIcon(isOkay ? 'CheckCircle2Icon' : 'CircleAlertIcon')"
+      size="18"
+      class="{{ isOkay ? 'text-green-500' : 'text-amber-600' }}"
+    ></lucide-angular>
+    }
+  </div>
+  @if(hint){
+  <p class="text-sm font-medium text-amber-600 text-right">
+    {{ hint }}
+  </p>
+  }
+</div>

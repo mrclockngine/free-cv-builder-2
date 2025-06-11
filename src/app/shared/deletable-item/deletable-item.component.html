@@ -1,0 +1,18 @@
+<div
+  #container
+  class="flex items-start border sm:border-0 border-slate-200 rounded p-5 sm:p-0"
+>
+  <div [className]="containerClassName">
+    <ng-content></ng-content>
+  </div>
+  <app-button
+    variant="icon"
+    icon="Trash2Icon"
+    size="m"
+    text
+    theme="danger-alt"
+    class="ml-5 sm:mt-8"
+    title="Remove This Link"
+    (onClick)="delete.emit($event)"
+  />
+</div>

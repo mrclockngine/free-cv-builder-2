@@ -1,0 +1,29 @@
+@if (routerLink()) {
+<a [className]="className" [routerLink]="routerLink()">
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</a>
+}@else {
+<button
+  [disabled]="loading() !== false || disabled()"
+  [className]="className"
+  (click)="onClick.emit($event)"
+>
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</button>
+}
+
+<ng-template #content>
+  <lucide-angular
+    *ngIf="!(iconAtEnd() !== false) && (loading() !== false || icon())"
+    [img]="getIcon(loading() !== false ? 'LoaderCircleIcon' : icon()!)"
+    [size]="size() === 'l' ? 18 : size() === 'm' ? 16 : 12"
+    [class.animate-spin]="loading() !== false"
+  ></lucide-angular>
+  <span *ngIf="variant() !== 'icon'">{{ label() }}</span>
+  <lucide-angular
+    *ngIf="iconAtEnd() !== false && (loading() !== false || icon())"
+    [img]="getIcon(loading() !== false ? 'LoaderCircleIcon' : icon()!)"
+    [size]="size() === 'l' ? 18 : size() === 'm' ? 16 : 12"
+    [class.animate-spin]="loading() !== false"
+  ></lucide-angular>
+</ng-template>

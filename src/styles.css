@@ -1,1 +1,89 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+:root {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: 14px;
+
+  @apply bg-slate-50 text-slate-950;
+}
+
+h1,
+h2 {
+  @apply font-bold text-slate-950;
+}
+
+h1 {
+  @apply text-2xl md:text-3xl;
+}
+
+h2 {
+  @apply text-xl md:text-2xl;
+}
+
+h3 {
+  @apply font-semibold text-lg md:text-xl text-slate-950;
+}
+
+h4 {
+  @apply font-semibold text-base md:text-lg text-slate-950;
+}
+
+.paragraph {
+  @apply text-base leading-relaxed text-slate-600;
+}
+
+.paragraph.small {
+  @apply text-sm;
+}
+
+.btn {
+  @apply cursor-pointer px-4 py-2 font-medium rounded inline-flex justify-center items-center space-x-2;
+}
+
+.btn.primary {
+  @apply bg-indigo-600 text-white hover:bg-indigo-500;
+}
+
+.btn.secondary {
+  @apply bg-slate-200 text-slate-800 hover:bg-slate-300;
+}
+
+.btn.text {
+  @apply text-slate-600 hover:text-slate-700 hover:bg-slate-200;
+}
+
+.btn-icon {
+  @apply shrink-0 cursor-pointer size-12 flex items-center justify-center rounded-full;
+}
+
+.btn-icon.primary {
+  @apply bg-indigo-600 text-white hover:bg-indigo-500;
+}
+
+.btn-icon.secondary {
+  @apply bg-slate-200 text-slate-800 hover:bg-slate-300;
+}
+
+.btn-icon.text {
+  @apply text-slate-600 hover:text-slate-700 hover:bg-slate-200;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  @apply size-2;
+}
+
+/* Track */
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+/* Handle */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded-full;
+}
+
+input {
+  @apply outline-none;
+}

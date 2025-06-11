@@ -1,0 +1,139 @@
+<div class="flex flex-col">
+  <h2 class="text-2xl font-bold text-gray-800">
+    Unmask your professional self.
+  </h2>
+  <p class="paragraph mt-2 max-w-lg">
+    Fill in your basic details so employers know who you are, where you're from,
+    and how to reach you—no need for a cape, just the essentials.
+  </p>
+</div>
+
+<div class="flex flex-col sm:flex-row space-y-5 sm:space-y-0 sm:space-x-5 mt-6">
+  <div class="flex flex-col space-y-1 shrink-0">
+    <label for="name" class="font-medium text-slate-600">Avatar</label>
+    <div class="row-span-2 size-36 bg-slate-200 rounded"></div>
+  </div>
+  <div class="flex flex-col flex-1 justify-between space-y-5">
+    <app-text-input
+      [control]="getFormControl('name')"
+      label="Your Name"
+      placeholder="Clark Joseph Kent"
+    />
+
+    <app-text-input
+      [control]="getFormControl('jobTitle')"
+      label="Job Title"
+      placeholder="Investigative Journalist"
+    />
+  </div>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-5 sm:mt-10">
+  <app-text-input
+    [control]="getFormControl('email')"
+    label="Email Address"
+    placeholder="clark.kent@dailyplanet.com"
+  />
+  <app-text-input
+    [control]="getFormControl('phone')"
+    label="Phone Number"
+    placeholder="+1 (212) 555-0193"
+  />
+</div>
+
+<div class="grid sm:grid-cols-2 gap-5 mt-5 sm:mt-10">
+  <app-text-input
+    [control]="getFormControl('address')"
+    label="Address"
+    placeholder="Apartment 3B, 344 Clinton St, Metropolis, NY"
+    class="sm:col-span-2"
+  />
+  <app-text-input
+    [control]="getFormControl('city')"
+    label="City"
+    placeholder="Metropolis"
+  />
+  <app-text-input
+    [control]="getFormControl('stateProvince')"
+    label="State/Province"
+    placeholder="New York"
+  />
+  <app-text-input
+    [control]="getFormControl('postalCode')"
+    label="Postal Code"
+    placeholder="10001"
+  />
+  <app-text-input
+    [control]="getFormControl('country')"
+    label="Country"
+    placeholder="United States"
+  />
+</div>
+
+<div class="flex flex-col mt-5 sm:mt-10 space-y-5">
+  <div class="flex flex-col space-y-1">
+    <h3 class="">Social Links</h3>
+    <p class="paragraph">
+      Add your social media profiles to let employers know where to find you.
+    </p>
+  </div>
+
+  @for (socialLink of socialLinks.controls; track $index) {
+  <app-deletable-item
+    containerClass="grid grid-cols-1 sm:grid-cols-2 gap-5"
+    (delete)="removeSocialLink($index)"
+    [scrollToView]="$index > initialSocialLinksLength() - 1"
+  >
+    <app-text-input
+      [control]="getSocialLinkControl(socialLink, 'title')"
+      label="Title"
+      placeholder="Social Profile Title (e.g., LinkedIn)"
+    />
+    <app-text-input
+      [control]="getSocialLinkControl(socialLink, 'link')"
+      label="URL"
+      [placeholder]="
+        getSocialLinkControl(socialLink, 'title').value
+          ? 'URL for ' + getSocialLinkControl(socialLink, 'title').value
+          : 'Social Profile URL'
+      "
+    />
+  </app-deletable-item>
+  }
+
+  <app-button
+    class="mt-2"
+    icon="PlusIcon"
+    label="Add Social Link"
+    theme="secondary-alt"
+    (onClick)="addSocialLink()"
+  />
+</div>
+
+<app-expandable-section
+  title="Extra info"
+  styleClass="mt-5 sm:mt-10"
+  contentContailerClass="grid grid-cols-1 sm:grid-cols-2 gap-5"
+  [initiallyExpanded]="initialExtraInfoExpanded()"
+>
+  <app-text-input
+    [control]="getFormControl('idNumber')"
+    label="ID Number"
+    placeholder="KRY-1938-CLARK"
+  />
+  <app-text-input
+    [control]="getFormControl('birthDate')"
+    label="Birth Date"
+    placeholder="1938-06-01"
+  />
+  <app-text-input
+    [control]="getFormControl('nationality')"
+    label="Nationality"
+    placeholder="Kryptonian-American"
+  />
+  <app-text-input
+    [control]="getFormControl('drivingLicense')"
+    label="Driving License"
+    placeholder="NY1234567"
+  />
+</app-expandable-section>
