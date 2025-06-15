@@ -1,0 +1,23 @@
+<swiper-container #swiper class="mt-4" init="false">
+  @for (template of templates; track $index) {
+  <swiper-slide>
+    <div
+      (click)="selectTemplate($index)"
+      role="button"
+      class="p-2 m-2 bg-white rounded shadow cursor-pointer ring-offset-0 ring-[3px] {{
+        getIsSelected($index) ? 'ring-indigo-500' : 'ring-transparent'
+      }}"
+    >
+      <div class="aspect-[210/290] relative overflow-hidden rounded">
+        <img
+          [ngSrc]="template.viewImage"
+          [alt]="'Preview of template ' + template.name"
+          fill
+          class="object-cover object-top"
+          priority
+        />
+      </div>
+    </div>
+  </swiper-slide>
+  }
+</swiper-container>

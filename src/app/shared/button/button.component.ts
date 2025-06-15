@@ -3,7 +3,7 @@ import { Component, input, output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 import { twMerge } from 'tailwind-merge';
-import { BaseComponent } from '../../core/base.component';
+import { BaseComponent } from '../../base.component';
 import { IconName } from '../../icons';
 
 @Component({

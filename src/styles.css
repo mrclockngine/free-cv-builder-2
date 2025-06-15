@@ -7,6 +7,8 @@
   font-size: 14px;
 
   @apply bg-slate-50 text-slate-950;
+
+  --swiper-navigation-color: var(--color-slate-950);
 }
 
 h1,
@@ -86,4 +88,12 @@ h4 {
 
 input {
   @apply outline-none;
+}
+
+.cv-preview-root {
+  all: initial;
+  font-size: 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }

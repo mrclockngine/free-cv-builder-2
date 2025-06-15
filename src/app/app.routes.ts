@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { BuilderComponent } from './features/builder/builder.component';
-import { Steps } from './steps';
+import { BuilderComponent } from './builder/builder.component';
+import { Steps } from './builder/steps';
 
 export const routes: Routes = [
   {

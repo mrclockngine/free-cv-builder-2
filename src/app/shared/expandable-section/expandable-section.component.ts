@@ -1,7 +1,5 @@
 import {
   Component,
-  effect,
-  EffectRef,
   ElementRef,
   input,
   OnInit,
@@ -10,7 +8,7 @@ import {
 } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { twMerge } from 'tailwind-merge';
-import { BaseComponent } from '../../core/base.component';
+import { BaseComponent } from '../../base.component';
 
 @Component({
   selector: 'app-expandable-section',
@@ -31,33 +29,8 @@ export class ExpandableSectionComponent
 
   contentContainer = viewChild<ElementRef<HTMLDivElement>>('content_container');
 
-  private effectRef: EffectRef;
-
-  constructor() {
-    super();
-    this.effectRef = effect((onCleanup) => {
-      if (this.expanded()) {
-        const timeout = setTimeout(() => {
-          this.contentContainer()?.nativeElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-          });
-        }, 100);
-
-        onCleanup(() => {
-          clearTimeout(timeout);
-        });
-      }
-    });
-  }
-
   ngOnInit(): void {
     this.expanded.set(this.initiallyExpanded() !== false);
-  }
-
-  override ngOnDestroy(): void {
-    super.ngOnDestroy();
-    this.effectRef?.destroy();
   }
 
   get wrapperClassName() {
@@ -69,5 +42,17 @@ export class ExpandableSectionComponent
 
   get contentContainerClassName() {
     return twMerge('px-5 pb-5 pt-1', this.contentContailerClass());
+  }
+
+  toggleExpanded() {
+    if (!this.expanded()) {
+      setTimeout(() => {
+        this.contentContainer()?.nativeElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }, 100);
+    }
+    this.expanded.set(!this.expanded());
   }
 }

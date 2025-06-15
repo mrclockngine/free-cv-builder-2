@@ -1,0 +1,12 @@
+<div class="flex flex-wrap mt-5">
+  @for (color of colors; track $index) {
+  <div
+    role="button"
+    (click)="selectColor($index)"
+    class="size-12 mr-5 mb-5 rounded ring-[3px] cursor-pointer ring-offset-2 {{
+      getIsSelected($index) ? 'ring-indigo-500' : 'ring-transparent'
+    }}"
+    [style.backgroundColor]="color"
+  ></div>
+  }
+</div>

@@ -6,7 +6,7 @@ import {
 } from '@angular/forms';
 import { LucideAngularModule } from 'lucide-angular';
 import { twMerge } from 'tailwind-merge';
-import { BaseComponent } from '../../core/base.component';
+import { BaseComponent } from '../../base.component';
 
 @Component({
   selector: 'app-text-input',
